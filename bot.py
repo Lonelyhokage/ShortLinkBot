@@ -25,12 +25,10 @@ import aiohttp
 from aiogram import (
     Bot,
     Dispatcher,
+    start_webhook, 
     types
 )
-from aiogram import (
-    
-    start_webhook
-)
+
 
 
 # -*- CONSTANTS -*-
