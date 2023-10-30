@@ -103,7 +103,7 @@ async def get_short_zon_links(message: types.Message) -> List[Dict[str, str]]:
     return output_url_s
 
 
-@dp.message_handler(commands=["start", "help"])
+message_handler(commands=["start", "help"])
 async def help_handler_f(message: types.Message):
     """
     This handler will be called when user sends `/start` or `/help` command
@@ -111,7 +111,7 @@ async def help_handler_f(message: types.Message):
     await message.reply(START_TEXT)
 
 
-@dp.message_handler(regexp="^(ht|f)tp*")
+message_handler(regexp="^(ht|f)tp*")
 async def links_handler_f(message: types.Message):
     """
     This handler will be called when user sends link(s)
@@ -151,7 +151,7 @@ async def on_shutdown(_):
 if __name__ == "__main__":
     if IS_WEBHOOK:
         start_webhook(
-            dispatcher=dp,
+            
             webhook_path=WEBHOOK_PATH,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
@@ -160,4 +160,4 @@ if __name__ == "__main__":
             port=WEBAPP_PORT,
         )
     else:
-        start_polling(dp, skip_updates=True)
+        start_polling( skip_updates=True)
