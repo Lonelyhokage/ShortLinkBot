@@ -25,10 +25,12 @@ import aiohttp
 from aiogram import (
     Bot,
     Dispatcher,
-    start_webhook, 
     types
 )
-
+from aiogram.utils.executor import (
+    start_polling,
+    start_webhook
+)
 
 
 # -*- CONSTANTS -*-
