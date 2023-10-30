@@ -27,10 +27,7 @@ from aiogram import (
     Dispatcher,
     types
 )
-from aiogram.utils.executor import (
-    start_polling,
-    start_webhook
-)
+
 
 
 # -*- CONSTANTS -*-
