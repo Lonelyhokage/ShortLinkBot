@@ -28,7 +28,7 @@ from aiogram import (
     types
 )
 from aiogram import (
-    start_polling,
+    
     start_webhook
 )
 
