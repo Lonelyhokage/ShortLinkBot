@@ -27,7 +27,10 @@ from aiogram import (
     Dispatcher,
     types
 )
-
+from aiogram.utils.executor import (
+    start_polling,
+    start_webhook
+)
 
 
 # -*- CONSTANTS -*-
@@ -62,6 +65,7 @@ ALLOW_MULTIPLE_LINKS = bool(os.environ.get("ALLOW_MULTIPLE_LINKS", False))
 logging.basicConfig(level=logging.INFO)
 # initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
+dp = Dispatcher(bot)
 
 
 async def shorten_link(long_url: str) -> str:
@@ -103,7 +107,7 @@ async def get_short_zon_links(message: types.Message) -> List[Dict[str, str]]:
     return output_url_s
 
 
-message_handler(commands=["start", "help"])
+@dp.message_handler(commands=["start", "help"])
 async def help_handler_f(message: types.Message):
     """
     This handler will be called when user sends `/start` or `/help` command
@@ -111,7 +115,7 @@ async def help_handler_f(message: types.Message):
     await message.reply(START_TEXT)
 
 
-message_handler(regexp="^(ht|f)tp*")
+@dp.message_handler(regexp="^(ht|f)tp*")
 async def links_handler_f(message: types.Message):
     """
     This handler will be called when user sends link(s)
@@ -151,7 +155,7 @@ async def on_shutdown(_):
 if __name__ == "__main__":
     if IS_WEBHOOK:
         start_webhook(
-            
+            dispatcher=dp,
             webhook_path=WEBHOOK_PATH,
             on_startup=on_startup,
             on_shutdown=on_shutdown,
@@ -160,4 +164,4 @@ if __name__ == "__main__":
             port=WEBAPP_PORT,
         )
     else:
-        start_polling( skip_updates=True)
+        start_polling(dp, skip_updates=True)
