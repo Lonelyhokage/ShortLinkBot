@@ -3,3 +3,15 @@ aiogram
 
 # for making HTTP requests
 aiohttp
+bs4
+cfscrape
+cloudscraper
+curl_cffi
+lxml
+httpx
+python-dotenv
+pyrogram
+requests
+tgcrypto
+urllib3==1.26
+uvloop
