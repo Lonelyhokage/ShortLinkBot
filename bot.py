@@ -62,7 +62,6 @@ ALLOW_MULTIPLE_LINKS = bool(os.environ.get("ALLOW_MULTIPLE_LINKS", False))
 logging.basicConfig(level=logging.INFO)
 # initialize bot and dispatcher
 bot = Bot(token=API_TOKEN)
-dp = Dispatcher(bot)
 
 
 async def shorten_link(long_url: str) -> str:
